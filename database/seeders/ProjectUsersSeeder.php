@@ -20,9 +20,7 @@ class ProjectUsersSeeder extends Seeder
 
         foreach ($users as $user) {
             foreach ($projects as $project) {
-                ProjectUser::factory()->create([
-                    'user_id' => $user->id,
-                    'project_id' => $project->id,
+                $user->projects()->attach($project, [
                     'request_status' => rand(0, 3),
                     'approval_status' => rand(0, 3),
                 ]);
