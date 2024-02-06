@@ -29,4 +29,9 @@ class Project extends Model
         '2' => 'On hold',
         '3' => 'Completed',
     ];
+    public function partners()
+    {
+        return $this->belongsToMany(Partner::class);
+    }
+
 }

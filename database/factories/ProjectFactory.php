@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Partner;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project>
@@ -25,5 +27,9 @@ class ProjectFactory extends Factory
             'status' => $faker->randomElement([0,1,2,3]),
             'image' => $faker->imageUrl(),
         ];
+
+
     }
+
+
 }

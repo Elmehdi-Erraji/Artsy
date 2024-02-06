@@ -2,22 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Project;
-use App\Models\User;
+use App\Models\Partner;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProjectUserSeeder extends Seeder
+class PartnerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $projects = Project::all();
-        $users = User::all();
-
-
-
+        Partner::factory()->count(5)->create();
     }
 }
