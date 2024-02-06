@@ -24,6 +24,20 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'description',
+        'profession',
+        'phone',
+        'status',
+        'image',
+    ];
+    protected $attributes = [
+        'status' => 0,
+    ];
+
+    const  STATUS_RADIO = [
+        '0' => 'pinned',
+        '1' => 'accepted',
+        '2' => 'rejected',
     ];
 
     /**
