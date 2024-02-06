@@ -24,6 +24,20 @@ class Kernel extends HttpKernel
     ];
 
     /**
+     * The application's route middleware priority array.
+     *
+     * This determines the order of middleware execution.
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        \Spatie\Permission\Middleware\RoleMiddleware::class,
+        \Spatie\Permission\Middleware\PermissionMiddleware::class,
+        \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    ];
+
+    /**
      * The application's route middleware groups.
      *
      * @var array<string, array<int, class-string|string>>

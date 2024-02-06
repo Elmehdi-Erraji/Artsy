@@ -21,6 +21,6 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ]);
-        $user->assignRole('admin','artist');
+        $user->assignRole('admin');
     }
 }
