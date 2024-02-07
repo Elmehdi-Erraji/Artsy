@@ -31,8 +31,8 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
-        Project::create($request->all());
-
+        $project = Project::create($request->all());
+        $project->partners()->attach($request->input('partners', []));
         return redirect()->route('projects.index')->with('success','Project created successfully');
     }
 
@@ -57,9 +57,10 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProjectRequest $request, string $id)
+    public function update(ProjectRequest $request, Project $project)
     {
         Project::update($request->all());
+        $project->partners()->sync($request->input('partners', []));
         return redirect()->route('projects.index')->with('success','Project updated successfully');
 
     }

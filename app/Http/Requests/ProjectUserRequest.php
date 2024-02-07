@@ -2,9 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Project;
+use App\Models\ProjectUser;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class PartnerRequest extends FormRequest
+class ProjectUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +25,10 @@ class PartnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'email' => 'required|email|unique:partners,email',
-            'phone' => 'required|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'projects.*' => 'exists:projects,id',
+            'user_id' => 'required|exists:users,id',
+            'project_id' => 'required|exists:projects,id',
+            'request_status' =>Rule::in(array_keys(ProjectUser::STATUS_RADIO)),
+            'approval_status' =>Rule::in(array_keys(ProjectUser::STATUS_RADIO)),
         ];
     }
 }

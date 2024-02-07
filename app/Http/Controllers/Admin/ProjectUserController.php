@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectUserRequest;
+use App\Models\ProjectUser;
 use Illuminate\Http\Request;
 
 class ProjectUserController extends Controller
@@ -26,9 +28,11 @@ class ProjectUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProjectUserRequest $request)
     {
-        //
+        $projectUser = ProjectUser::create($request->all());
+        return redirect()->route('projectusers.index')->with('success','created with success');
+
     }
 
     /**
@@ -50,16 +54,19 @@ class ProjectUserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProjectUserRequest $request, ProjectUser $projectUser)
     {
-        //
+        $projectUser->Update($request->all());
+        return redirect()->route('projectusers.index')->with('success','updated with success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(ProjectUser  $projectUser)
     {
-        //
+        $projectUser->delete();
+        return redirect()->route('projectusers.index')->with('success','deleted with success');
+
     }
 }

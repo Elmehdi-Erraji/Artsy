@@ -31,6 +31,7 @@ class ProjectRequest extends FormRequest
             'deadline' => 'required|date|after:start_date',
             'budget' => 'required|numeric|min:0',
             'status' =>Rule::in(array_keys(Project::STATUS_RADIO)),
+            'partners.*' => 'exists:partners,id',
         ];
     }
 }

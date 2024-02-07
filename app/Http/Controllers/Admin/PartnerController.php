@@ -31,7 +31,9 @@ class PartnerController extends Controller
      */
     public function store(PartnerRequest $request)
     {
-        Partner::create($request->all());
+        $partner = Partner::create($request->all());
+        $partner->projects()->attach($request->input('projects', []));
+
         return redirect()->route('partners.index')->with('success','Partner created successfully');
 
     }
@@ -60,6 +62,7 @@ class PartnerController extends Controller
     public function update(PartnerRequest $request, string $id)
     {
         Partner::update($request->all());
+        $partner->projects()->sync($request->input('projects', []));
         return redirect()->route('partners.index')->with('success','partner updated successfully');
     }
 
