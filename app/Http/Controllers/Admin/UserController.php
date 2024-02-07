@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -30,7 +31,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+
+        $user->assignRole($request->roles);
+        return redirect()->route('users.index')->with('success','User Added successfully');
     }
 
     /**
@@ -56,15 +60,21 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user->status = $request->status;
+        $roles = Role::whereIn('name', $request->roles)->get();
+
+        $user->syncRoles($roles);
+        $user->save();
+
+        return redirect()->route('users.index')->with('success','User Updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
+
         $user->delete();
         return redirect()->route('users.index')->with('success','User has been deleted successfully');
     }
