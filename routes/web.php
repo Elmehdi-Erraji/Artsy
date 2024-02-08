@@ -23,9 +23,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/admin',function(){
-    return view('admin.index');
-})->middleware(['auth','role:admin'])->name('admin.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,7 +30,39 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('users', 'App\Http\Controllers\UserController');
 
 
+Route::get('/admin',function(){
+    return view('admin.index');
+})->middleware(['auth','role:admin'])->name('admin.index');
+
+
+Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
+Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
 require __DIR__.'/auth.php';
+
+
+
+Route::get('/test', function () {
+    return view('test');
+});
+Route::get('/test1', function () {
+    return view('test1');
+});
+Route::get('/test2', function () {
+    return view('test2');
+});
+
+Route::get('/dash', function () {
+    return view('dash');
+});
+Route::get('/create', function () {
+    return view('create');
+});
+
+Route::get('/form', function () {
+    return view('forms');
+});
+
+
