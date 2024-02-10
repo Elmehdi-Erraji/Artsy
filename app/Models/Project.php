@@ -19,7 +19,6 @@ class Project extends Model  implements HasMedia
         'deadline',
         'budget',
         'status',
-        'image',
     ];
 
     protected $attributes =[

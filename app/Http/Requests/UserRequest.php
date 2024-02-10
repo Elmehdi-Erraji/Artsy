@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,10 +29,9 @@ class UserRequest extends FormRequest
             'password' => 'required|string|min:8',
             'description' => 'nullable|string',
             'profession' => 'nullable|string',
-            'phone' => 'nullable|string',
+            'phone' => 'required|nullable|string',
             'status' =>Rule::in(array_keys(User::STATUS_RADIO)), // Allow status to be 0, 1, 2
-            'image' => 'nullable|string',
-            'roles'=> 'required|array',
+            'role'=> 'required',
         ];
     }
 }

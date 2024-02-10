@@ -35,16 +35,51 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarUsers" aria-expanded="false" aria-controls="sidebarUsers" class="side-nav-link">
                     <i class="ri-group-2-line"></i>
-                    <span> Users </span>
+                    <span> Artists </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarUsers">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="user-add">Add User</a>
+                            <a href="{{route('users.create')}}">Add artists</a>
                         </li>
                         <li>
-                            <a href="user-list">User List</a>
+                            <a href="{{route('users.index')}}">Artists List</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPartners" aria-expanded="false" aria-controls="sidebarUsers" class="side-nav-link">
+                    <i class="ri-building-2-line"></i>
+                    <span> Partners </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPartners">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('partners.create')}}">Add a partner </a>
+                        </li>
+                        <li>
+                            <a href="{{route('partners.index')}}">Partners List</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarFAQ" aria-expanded="false" aria-controls="sidebarFAQ" class="side-nav-link">
+                    <i class="ri-folder-line"></i>
+                    <span> Projects </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarFAQ">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('projects.create')}}">Add projects</a>
+                        </li>
+                        <li>
+                            <a href="{{route('projects.index')}}">Projects List</a>
                         </li>
                     </ul>
                 </div>
@@ -52,32 +87,19 @@
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarServices" aria-expanded="false" aria-controls="sidebarServices" class="side-nav-link">
-                    <i class="ri-pencil-ruler-2-line"></i>
-                    <span> Announces </span>
+                    <i class="ri-flag-2-line"></i>
+                    <span> Requests </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarServices">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="reservations-list.php">Announces List</a>
+                            <a href="reservations-list.php">Requests List</a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarFAQ" aria-expanded="false" aria-controls="sidebarFAQ" class="side-nav-link">
-                    <i class="ri-questionnaire-line"></i>
-                    <span> Comments </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarFAQ">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="dash-comments">Comments List</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+
 
 
 

@@ -30,7 +30,7 @@ class User extends Authenticatable implements HasMedia
         'profession',
         'phone',
         'status',
-        'image',
+
     ];
     protected $attributes = [
         'status' => 0,
@@ -62,6 +62,10 @@ class User extends Authenticatable implements HasMedia
         'password' => 'hashed',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('avatar');
+    }
     public function projects()
     {
         return $this->belongsToMany(Project::class);

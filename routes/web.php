@@ -44,6 +44,20 @@ require __DIR__.'/auth.php';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/test', function () {
     return view('test');
 });
@@ -61,7 +75,7 @@ Route::get('/create', function () {
     return view('create');
 });
 
-Route::get('/form', function () {
+Route::get('/forms', function () {
     return view('forms');
 });
 

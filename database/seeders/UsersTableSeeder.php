@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'profession' => \Faker\Factory::create()->jobTitle(),
             'phone' => \Faker\Factory::create()->phoneNumber(),
             'status' => \Faker\Factory::create()->randomElement([1, 2, 3]), // Randomly choose status from 1, 2, or 3
-            'image' => \Faker\Factory::create()->imageUrl(),
+            
         ]);
 
         $user->assignRole('admin');

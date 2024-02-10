@@ -29,7 +29,7 @@
                                 <div class="float-end">
                                     <i class="ri-group-2-line widget-icon"></i>
                                 </div>
-                                <h6 class="text-uppercase mt-0" title="Customers">Users</h6>
+                                <h6 class="text-uppercase mt-0" title="Users">Users</h6>
                                 <h2 class="my-2">5</h2>
                             </div>
                         </div>
@@ -38,9 +38,9 @@
                         <div class="card widget-flat text-bg-info">
                             <div class="card-body">
                                 <div class="float-end">
-                                    <i class="ri-shopping-basket-line widget-icon"></i>
+                                    <i class="ri-folder-line widget-icon"></i>
                                 </div>
-                                <h6 class="text-uppercase mt-0" title="Customers">Properties</h6>
+                                <h6 class="text-uppercase mt-0" title="Projects">Projects</h6>
                                 <h2 class="my-2">5</h2>
                             </div>
                         </div>
@@ -49,14 +49,26 @@
                         <div class="card widget-flat text-bg-purple">
                             <div class="card-body">
                                 <div class="float-end">
-                                    <i class="ri-wallet-2-line widget-icon"></i>
+                                    <i class="ri-building-4-line widget-icon"></i>
                                 </div>
-                                <h6 class="text-uppercase mt-0" title="Customers">Reservations</h6>
+                                <h6 class="text-uppercase mt-0" title="Partners">Partners</h6>
                                 <h2 class="my-2">7</h2>
                             </div>
                         </div>
                     </div>
+                    <div class="col-xxl-3 col-sm-6">
+                        <div class="card widget-flat text-bg-secondary">
+                            <div class="card-body">
+                                <div class="float-end">
+                                    <i class="ri-mail-line widget-icon"></i>
+                                </div>
+                                <h6 class="text-uppercase mt-0" title="Requests">Requests</h6>
+                                <h2 class="my-2">10</h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
 
                 <div class="row">
                     <div class="col-12">

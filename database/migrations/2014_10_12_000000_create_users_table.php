@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('profession')->nullable();
             $table->string('phone')->nullable();
             $table->integer('status');
-// $table->unsignedTinyInteger('status')->default(1);
-            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view ('admin.users.create');
+        $roles = role::all();
+        return view ('admin.users.create',compact('roles'));
     }
 
     /**
@@ -32,10 +33,12 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = User::create($request->all());
 
-        $user->assignRole($request->roles);
-        return redirect()->route('users.index')->with('success','User Added successfully');
+
+            $user = User::create($request->all());
+
+            $user->roles()->attach($request->role);
+            return redirect()->route('users.index')->with('success','User Added successfully');
     }
 
     /**

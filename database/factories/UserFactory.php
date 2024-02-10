@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'profession' => $faker->jobTitle,
             'phone' => $faker->phoneNumber,
             'status' => $faker->randomElement([0, 1, 2]),
-            'image' => $faker->imageUrl(),
+
             'remember_token' => Str::random(10),
         ];
     }
