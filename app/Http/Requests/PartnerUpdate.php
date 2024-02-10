@@ -30,5 +30,5 @@ class PartnerUpdate extends FormRequest
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ];
     }
-    
+
 }

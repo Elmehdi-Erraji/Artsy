@@ -56,7 +56,7 @@
                             <i class="ri-folder-line widget-icon"></i>
                         </div>
                         <h6 class="text-uppercase mt-0" title="Projects">Projects</h6>
-                        <h2 class="my-2">NY</h2>
+                        <h2 class="my-2">{{$projectsCount}}</h2>
                     </div>
                 </div>
             </div>
