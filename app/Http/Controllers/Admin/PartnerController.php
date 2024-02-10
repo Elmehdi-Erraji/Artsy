@@ -15,7 +15,7 @@ class PartnerController extends Controller
     public function index()
     {
         $partners = Partner::all();
-        return view('partners.index',compact('partners'));
+        return view('admin.partners.index',compact('partners'));
     }
 
     /**
@@ -23,7 +23,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        return view('partners.create');
+        return view('admin.partners.create');
     }
 
     /**
@@ -32,8 +32,8 @@ class PartnerController extends Controller
     public function store(PartnerRequest $request)
     {
         $partner = Partner::create($request->all());
-        $partner->projects()->attach($request->input('projects', []));
-
+//        $partner->projects()->attach($request->input('projects', []));
+        $partner->addMediaFromRequest('logo')->usingName($partner->name)->toMediaCollection('partners');
         return redirect()->route('partners.index')->with('success','Partner created successfully');
 
     }
@@ -53,7 +53,7 @@ class PartnerController extends Controller
     public function edit(string $id)
     {
         $partner = Partner::findOrFail($id);
-        return view('partners.edit',compact('partner'));
+        return view('admin.partners.edit',compact('partner'));
     }
 
     /**
@@ -61,17 +61,24 @@ class PartnerController extends Controller
      */
     public function update(PartnerRequest $request, string $id)
     {
-        Partner::update($request->all());
-        $partner->projects()->sync($request->input('projects', []));
+        $partner = Partner::findOrFail($id);
+
+        $partner->update($request->all());
+
+       if($request->hasFile('logo'))
+       {
+           $partner->clearMediaCollection('partners');
+           $partner->addMediaFromRequest('logo')->toMediaCollection('partners');
+       }
         return redirect()->route('partners.index')->with('success','partner updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Partner $partenr)
+    public function destroy(Partner $partner)
     {
-        $partenr->delete();
+        $partner->delete();
         return redirect()->route('partners.index')->with('success','Partner deleted successfully');
 
     }

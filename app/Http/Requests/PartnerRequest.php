@@ -11,7 +11,7 @@ class PartnerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,11 +23,10 @@ class PartnerRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'email' => 'required|email|unique:partners,email',
             'phone' => 'required|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'projects.*' => 'exists:projects,id',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ];
     }
 }

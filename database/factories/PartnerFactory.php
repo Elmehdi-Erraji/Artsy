@@ -22,7 +22,6 @@ class PartnerFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
 
-
         ];
     }
 }
