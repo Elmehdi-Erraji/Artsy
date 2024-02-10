@@ -6,31 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index',compact('users'));
+        $usersCount = User::count();
+        return view('admin.users.index',compact('users','usersCount'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $roles = role::all();
         return view ('admin.users.create',compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(UserRequest $request)
     {
 
@@ -41,44 +37,39 @@ class UserController extends Controller
             return redirect()->route('users.index')->with('success','User Added successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         $user = User::findOrFail($id);
         return view('users.show',compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
-        return view ('admin.users.edit',compact('user'));
+        $roles = role::all();
+        return view ('admin.users.edit',compact('user','roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request,  User $user)
     {
+        $request->validate([
+            'status' => Rule::in(array_keys(User::STATUS_RADIO)),
+            'role' => 'required',
+        ]);
+
+        $user->roles()->sync($request->role);
+
         $user->status = $request->status;
-        $roles = Role::whereIn('name', $request->roles)->get();
 
-        $user->syncRoles($roles);
         $user->save();
-
-        return redirect()->route('users.index')->with('success','User Updated successfully');
+        return redirect()->route('users.index')->with('success', 'User Updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $user)
     {
-
         $user->delete();
         return redirect()->route('users.index')->with('success','User has been deleted successfully');
     }

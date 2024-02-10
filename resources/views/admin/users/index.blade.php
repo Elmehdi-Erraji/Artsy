@@ -34,7 +34,7 @@
                             <i class="ri-group-2-line widget-icon"></i>
                         </div>
                         <h6 class="text-uppercase mt-0" title="Users">Users</h6>
-                        <h2 class="my-2">5</h2>
+                        <h2 class="my-2">{{$usersCount}}</h2>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                             <i class="ri-folder-line widget-icon"></i>
                         </div>
                         <h6 class="text-uppercase mt-0" title="Projects">Projects</h6>
-                        <h2 class="my-2">5</h2>
+                        <h2 class="my-2">NY</h2>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                             <i class="ri-building-4-line widget-icon"></i>
                         </div>
                         <h6 class="text-uppercase mt-0" title="Partners">Partners</h6>
-                        <h2 class="my-2">7</h2>
+                        <h2 class="my-2">NY</h2>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                             <i class="ri-mail-line widget-icon"></i>
                         </div>
                         <h6 class="text-uppercase mt-0" title="Requests">Requests</h6>
-                        <h2 class="my-2">10</h2>
+                        <h2 class="my-2">NY</h2>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,18 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
-                                            <td>{{ $user->status }}</td>
+
+                                            <td>
+                                                @if ($user->status === 0)
+                                                    <span class="badge bg-info-subtle text-info">Pending</span>
+                                                @elseif ($user->status === 1)
+                                                    <span class="badge bg-warning-subtle text-warning">Active</span>
+                                                @elseif ($user->status === 2)
+                                                    <span class="badge bg-pink-subtle text-pink ">Banned</span>
+                                                @else
+                                                    <span class="badge bg-warning">Unknown Status</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if ($user->roles()->exists())
                                                     {{ $user->roles()->first()->name }}
