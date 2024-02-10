@@ -23,8 +23,8 @@ class UsersTableSeeder extends Seeder
             'description' => \Faker\Factory::create()->paragraph(),
             'profession' => \Faker\Factory::create()->jobTitle(),
             'phone' => \Faker\Factory::create()->phoneNumber(),
-            'status' => \Faker\Factory::create()->randomElement([1, 2, 3]), // Randomly choose status from 1, 2, or 3
-            
+            'status' => \Faker\Factory::create()->randomElement([0, 1, 2]), // Randomly choose status from 1, 2, or 3
+
         ]);
 
         $user->assignRole('admin');

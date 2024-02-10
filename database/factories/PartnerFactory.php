@@ -21,7 +21,7 @@ class PartnerFactory extends Factory
             'description' => $this->faker->sentence,
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
-            'logo' => $this->faker->imageUrl(),
+
 
         ];
     }

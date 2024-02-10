@@ -23,7 +23,7 @@ class ProjectsTableSeeder extends Seeder
             'deadline' => $faker->date(),
             'budget' => $faker->randomFloat(2, 1000, 10000),
             'status' => $faker->randomElement([0, 1, 2, 3]),
-            'image' => $faker->imageUrl(),
+
         ]);
     }
 }

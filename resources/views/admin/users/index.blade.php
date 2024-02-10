@@ -110,8 +110,8 @@
                                         <tr>
                                             <td>{{ $user->id }}</td>
                                             <td>
-                                                @if ($user->avatar)
-                                                    <img src="{{ $user->getFirstMediaUrl('avatar') }}" alt="Avatar" width="50">
+                                                @if ($user->getFirstMedia('avatars'))
+                                                    <img src="{{ $user->getFirstMedia('avatars')->getUrl() }}" class="rounded-circle" alt="Avatar" width="50">
                                                 @else
                                                     No image
                                                 @endif

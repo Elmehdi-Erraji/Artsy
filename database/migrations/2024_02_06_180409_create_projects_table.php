@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('deadline');
             $table->decimal('budget');
             $table->integer('status');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

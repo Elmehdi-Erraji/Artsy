@@ -8,6 +8,23 @@ return [
      */
     'disk_name' => env('MEDIA_DISK', 'public'),
 
+
+    'media_collections' => [
+        'avatar' => [
+            'disk' => 'public',
+            'path' => 'avatars',
+        ],
+        'projects' => [
+            'disk' => 'public',
+            'path' => 'projects',
+        ],
+        'partners' => [
+            'disk' => 'public',
+            'path' => 'partners',
+        ],
+    ],
+
+
     /*
      * The maximum file size of an item in bytes.
      * Adding a larger file will result in an exception.
