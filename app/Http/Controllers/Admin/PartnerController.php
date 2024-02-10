@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PartnerRequest;
+use App\Http\Requests\PartnerUpdate;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 
@@ -59,7 +60,7 @@ class PartnerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PartnerRequest $request, string $id)
+    public function update(PartnerUpdate $request, string $id)
     {
         $partner = Partner::findOrFail($id);
 

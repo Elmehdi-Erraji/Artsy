@@ -77,7 +77,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $partner->name }}</td>
-                                            <td>{{ $partner->description }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($partner->description, 50) }}</td>
                                             <td>{{ $partner->email }}</td>
                                             <td>{{ $partner->phone }}</td>
 

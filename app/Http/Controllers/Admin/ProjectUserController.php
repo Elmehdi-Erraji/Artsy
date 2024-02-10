@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectUserRequest;
+use App\Models\Partner;
 use App\Models\ProjectUser;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ProjectUserController extends Controller
      */
     public function index()
     {
-        //
+        $partners = Partner::all();
+        return view('admin.partners.index',compact('partners'));
     }
 
     /**
@@ -22,7 +24,8 @@ class ProjectUserController extends Controller
      */
     public function create()
     {
-        //
+        $partners = Partner::all();
+        return view('admin.partners.create',compact('partners'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
+use App\Models\Partner;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects  = Project::all();
         return view('admin.projects.index',compact('projects'));
     }
 
@@ -23,7 +24,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $partners = Partner::all();
+        return view('admin.projects.create',compact('partners'));
     }
 
     /**
@@ -51,19 +53,20 @@ class ProjectController extends Controller
     public function edit(string $id)
     {
         $project = Project::findOrFail($id);
-        return view('projects.edit',compact('project'));
+        $partners = Partner::all();
+        return view('admin.projects.edit',compact('project','partners'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProjectRequest $request, Project $project)
+    public function update(Request $request, Project $project)
     {
-        Project::update($request->all());
+        $project->update($request->all());
         $project->partners()->sync($request->input('partners', []));
-        return redirect()->route('projects.index')->with('success','Project updated successfully');
-
+        return redirect()->route('projects.index')->with('success', 'Project updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.

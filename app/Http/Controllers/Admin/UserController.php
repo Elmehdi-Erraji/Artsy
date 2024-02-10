@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\Partner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -16,7 +17,8 @@ class UserController extends Controller
     {
         $users = User::all();
         $usersCount = User::count();
-        return view('admin.users.index',compact('users','usersCount'));
+        $partnersCount =Partner::count();
+        return view('admin.users.index',compact('users','usersCount','partnersCount'));
     }
 
 

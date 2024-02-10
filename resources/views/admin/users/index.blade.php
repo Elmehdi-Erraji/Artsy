@@ -39,6 +39,17 @@
                 </div>
             </div>
             <div class="col-xxl-3 col-sm-6">
+                <div class="card widget-flat text-bg-purple">
+                    <div class="card-body">
+                        <div class="float-end">
+                            <i class="ri-building-4-line widget-icon"></i>
+                        </div>
+                        <h6 class="text-uppercase mt-0" title="Partners">Partners</h6>
+                        <h2 class="my-2">{{$partnersCount}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-sm-6">
                 <div class="card widget-flat text-bg-info">
                     <div class="card-body">
                         <div class="float-end">
@@ -49,17 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xxl-3 col-sm-6">
-                <div class="card widget-flat text-bg-purple">
-                    <div class="card-body">
-                        <div class="float-end">
-                            <i class="ri-building-4-line widget-icon"></i>
-                        </div>
-                        <h6 class="text-uppercase mt-0" title="Partners">Partners</h6>
-                        <h2 class="my-2">NY</h2>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-xxl-3 col-sm-6">
                 <div class="card widget-flat text-bg-secondary">
                     <div class="card-body">
