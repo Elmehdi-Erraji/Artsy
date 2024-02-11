@@ -45,7 +45,7 @@ class PartnerController extends Controller
     public function show(string $id)
     {
         $partner = Partner::findOrFail($id);
-        return view('partners.show',compact('partner'));
+        return view('admin.partners.show',compact('partner'));
     }
 
     /**

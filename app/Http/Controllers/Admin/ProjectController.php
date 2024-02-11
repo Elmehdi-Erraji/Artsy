@@ -52,8 +52,13 @@ class ProjectController extends Controller
     public function show(string $id)
     {
         $project = Project::findOrFail($id);
-        return view('projects.show', compact('project'));
+
+        $partners = $project->partners;
+
+        $users  = $project->users;
+        return view('admin.projects.show', compact('project', 'partners', 'users'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

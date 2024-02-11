@@ -113,7 +113,9 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $project->id }}">Assign To</button>
+                                                <a href="{{ route('projects.show', $project->id) }}" class="btn btn-sm btn-info">View Details</a>
+
+                                                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $project->id }}">Assign To</button>
                                                 <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

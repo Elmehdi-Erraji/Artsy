@@ -21,9 +21,9 @@ class UserController extends Controller
         $usersCount = User::count();
         $partnersCount =Partner::count();
         $projectsCount =Project::count();
-        $incomingRequestsCount = ProjectUser::where('request_status', '!=', 3)->count();
+//        $incomingRequestsCount = ProjectUser::where('request_status', '!=', 3)->count();
 
-        return view('admin.users.index',compact('users','usersCount','partnersCount','projectsCount','incomingRequestsCount'));
+        return view('admin.users.index',compact('users','usersCount','partnersCount','projectsCount'));
     }
 
 
