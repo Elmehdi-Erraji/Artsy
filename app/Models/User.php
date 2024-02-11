@@ -70,4 +70,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsToMany(Project::class);
     }
+
+    public function projectUsers()
+    {
+        return $this->hasMany(ProjectUser::class);
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Partner;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -16,7 +17,12 @@ class ProjectController extends Controller
     public function index()
     {
         $projects  = Project::all();
-        return view('admin.projects.index',compact('projects'));
+        $users = User::where('status', 1)
+            ->whereHas('roles', function ($query) {
+                $query->where('name', 'artist');
+            })
+            ->get();
+        return view('admin.projects.index',compact('projects','users'));
     }
 
     /**

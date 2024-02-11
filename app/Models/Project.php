@@ -42,4 +42,9 @@ class Project extends Model  implements HasMedia
         return $this->belongsToMany(Partner::class);
     }
 
+    public function projectUsers()
+    {
+        return $this->hasMany(ProjectUser::class);
+    }
+
 }

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
-            $table->integer('request_status');
-            $table->integer('approval_status');
+            $table->integer('request_status')->default(null);
+            $table->integer('approval_status')->default(null);
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');

@@ -40,6 +40,9 @@ Route::get('/admin',function(){
 Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
 Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
+Route::resource('requests', \App\Http\Controllers\Admin\ProjectUserController::class);
+Route::post('/requests/{id}/assign', [\App\Http\Controllers\Admin\ProjectUserController::class, 'store']);
+
 require __DIR__.'/auth.php';
 
 

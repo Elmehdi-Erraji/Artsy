@@ -20,7 +20,7 @@
                             <li class="breadcrumb-item active">Welcome!</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Partners list</h4>
+                    <h4 class="page-title">Projects list</h4>
                 </div>
             </div>
         </div>
@@ -113,6 +113,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $project->id }}">Assign To</button>
                                                 <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
@@ -120,9 +121,56 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        <!-- Modal for Assign To -->
+                                        <div class="modal fade" id="exampleModal{{ $project->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Assign Users to Project</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('requests.store') }}" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="project_id" value="{{ $project->id }}">
+                                                            <input type="hidden" name="request_status" value="3">
+                                                            <div id="userList">
+                                                                <ul class="list-group">
+                                                                    @foreach($users as $user)
+                                                                        <li class="list-group-item">
+                                                                            <div class="form-check">
+                                                                                <input class="form-check-input" type="checkbox" name="selected_users[]" value="{{ $user->id }}" id="user_{{ $user->id }}" {{ $user->projects->contains($project->id) ? 'checked' : '' }}>
+                                                                                <label class="form-check-label" for="user_{{ $user->id }}">
+                                                                                    @if ($user->getFirstMedia('avatars'))
+                                                                                        <img src="{{ $user->getFirstMedia('avatars')->getUrl() }}" class="rounded-circle" alt="Avatar" width="50">
+                                                                                    @else
+                                                                                        No image
+                                                                                    @endif
+                                                                                    {{ $user->name }}
+                                                                                </label>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Assign Users</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                     </tbody>
                                 </table>
+
+
+                                <!-- Modal -->
+
+
 
                             @if (Session::has('success'))
                                     <script>

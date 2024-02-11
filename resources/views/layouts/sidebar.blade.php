@@ -94,7 +94,7 @@
                 <div class="collapse" id="sidebarServices">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="reservations-list.php">Requests List</a>
+                            <a href="{{route('requests.index')}}">Requests List</a>
                         </li>
                     </ul>
                 </div>

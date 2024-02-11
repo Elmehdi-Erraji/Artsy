@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Partner;
 use App\Models\Project;
+use App\Models\ProjectUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -20,7 +21,9 @@ class UserController extends Controller
         $usersCount = User::count();
         $partnersCount =Partner::count();
         $projectsCount =Project::count();
-        return view('admin.users.index',compact('users','usersCount','partnersCount','projectsCount'));
+        $incomingRequestsCount = ProjectUser::where('request_status', '!=', 3)->count();
+
+        return view('admin.users.index',compact('users','usersCount','partnersCount','projectsCount','incomingRequestsCount'));
     }
 
 
@@ -43,7 +46,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::findOrFail($id);
-        return view('users.show',compact('user'));
+        return view('admin.users.show',compact('user'));
     }
 
 

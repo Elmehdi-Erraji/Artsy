@@ -23,6 +23,17 @@ class ProjectUser extends Model
         '0' => 'pinned',
         '1' => 'accepted',
         '2' => 'rejected',
+        '3' => 'null',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 
 }

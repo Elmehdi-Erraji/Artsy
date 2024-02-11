@@ -68,7 +68,7 @@
                             <i class="ri-mail-line widget-icon"></i>
                         </div>
                         <h6 class="text-uppercase mt-0" title="Requests">Requests</h6>
-                        <h2 class="my-2">NY</h2>
+                        <h2 class="my-2">{{$incomingRequestsCount}}</h2>
                     </div>
                 </div>
             </div>
@@ -139,6 +139,8 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-info">View Details</a>
+
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

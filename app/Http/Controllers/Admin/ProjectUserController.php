@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectUserRequest;
 use App\Models\Partner;
+use App\Models\Project;
 use App\Models\ProjectUser;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,10 @@ class ProjectUserController extends Controller
      */
     public function index()
     {
-        $partners = Partner::all();
-        return view('admin.partners.index',compact('partners'));
+        $incomingRequests = ProjectUser::with('user', 'project')->where('request_status', '=', 0)->get();
+        $assignedProjects = ProjectUser::with('user', 'project')->where('approval_status', '=', 0)->get();
+
+        return view('admin.requests.index', compact('incomingRequests', 'assignedProjects'));
     }
 
     /**
@@ -31,12 +34,26 @@ class ProjectUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProjectUserRequest $request)
+    public function store(Request $request)
     {
-        $projectUser = ProjectUser::create($request->all());
-        return redirect()->route('projectusers.index')->with('success','created with success');
+        $project_id = $request->input('project_id');
+        $selected_users = $request->input('selected_users', []);
 
+        // Get the project
+        $project = Project::findOrFail($project_id);
+
+        $syncData = [];
+        foreach ($selected_users as $user_id) {
+            $syncData[$user_id] = [
+                'request_status' => 3,
+                'approval_status' => 0
+            ];
+        }
+        $project->users()->sync($syncData);
+
+        return redirect()->route('projects.index')->with('success', 'Users assigned successfully.');
     }
+
 
     /**
      * Display the specified resource.
