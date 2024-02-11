@@ -106,6 +106,15 @@
                                         @enderror
                                     </div>
 
+
+                                    <div class="mb-3">
+                                        <label for="project" class="form-label">Project Picture</label>
+                                        <input type="file" class="form-control @error('project') is-invalid @enderror" id="" name="project">
+                                        @error('project')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                     <button type="submit" id="submitButton" class="btn btn-primary" name="addProject">Submit</button>
                                 </form>
 

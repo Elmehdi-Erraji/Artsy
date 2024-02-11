@@ -31,10 +31,12 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProjectRequest $request)
+    public function store(Request $request)
     {
+
         $project = Project::create($request->all());
         $project->partners()->attach($request->input('partners', []));
+        $project->addMediaFromRequest('project')->usingName($project->id)->toMediaCollection('projects');
         return redirect()->route('projects.index')->with('success','Project created successfully');
     }
 

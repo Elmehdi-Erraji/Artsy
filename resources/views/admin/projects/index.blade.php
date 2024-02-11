@@ -70,7 +70,13 @@
                                     @foreach ($projects as $project)
                                         <tr>
                                             <td>{{ $project->id }}</td>
-                                            <td>{{ $project->id }}</td>
+                                            <td>
+                                                @if ($project->getFirstMedia('projects'))
+                                                    <img src="{{ $project->getFirstMedia('projects')->getUrl() }}" class="rounded-circle" alt="Avatar" width="50">
+                                                @else
+                                                    No image
+                                                @endif
+                                            </td>
                                             <td>{{ $project->title }}</td>
                                             <td>{{ $project->description }}</td>
                                             <td>{{ $project->start_date }}</td>
