@@ -42,6 +42,9 @@ Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class
 Route::resource('requests', \App\Http\Controllers\Admin\ProjectUserController::class);
 Route::post('/requests/{id}/assign', [\App\Http\Controllers\Admin\ProjectUserController::class, 'store']);
 
+
+Route::post('/update-request-status/{user}/{project}', [\App\Http\Controllers\Admin\ProjectUserController::class, 'updateRequestStatus'])
+    ->name('update.request.status');
 require __DIR__.'/auth.php';
 
 

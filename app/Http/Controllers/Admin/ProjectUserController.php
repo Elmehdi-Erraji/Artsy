@@ -7,6 +7,7 @@ use App\Http\Requests\ProjectUserRequest;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\ProjectUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectUserController extends Controller
@@ -45,8 +46,8 @@ class ProjectUserController extends Controller
         $syncData = [];
         foreach ($selected_users as $user_id) {
             $syncData[$user_id] = [
-                'request_status' => 3,
-                'approval_status' => 0
+                'request_status' => 4, //pending .1 accepted . 2denied
+                'approval_status' => 4 //pending .1 accepted .2denied
             ];
         }
         $project->users()->sync($syncData);
@@ -54,7 +55,20 @@ class ProjectUserController extends Controller
         return redirect()->route('projects.index')->with('success', 'Users assigned successfully.');
     }
 
+    public function updateRequestStatus(Request $request, User $user, Project $project)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'status' => 'required|in:1,2',
+        ]);
 
+        // Update the pivot table attributes
+        $user->projects()->updateExistingPivot($project->id, [
+            'request_status' => $request->status,
+        ]);
+
+        return redirect()->route('requests.index')->with('success', 'Users accepted successfully.');
+    }
     /**
      * Display the specified resource.
      */

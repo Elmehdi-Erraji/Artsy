@@ -69,7 +69,9 @@
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
+
                                                 <tbody>
+
                                                 @foreach($incomingRequests as $request)
                                                     <tr>
                                                         <td>
@@ -85,10 +87,29 @@
                                                             @endif
                                                         </td>
                                                         <td>{{ $request->project->title }}</td>
-                                                        <td>{{ $request->request_status }}</td>
+                                                        <td> @if ($request->request_status == 0)
+                                                                <span class="badge bg-info-subtle text-info">Pending</span>
+                                                            @elseif ($request->request_status == 1)
+                                                                <span class="badge bg-warning-subtle text-warning">Approved</span>
+                                                            @elseif ($request->request_status == 2)
+                                                                <span class="badge bg-pink-subtle text-pink">Rejected</span>
+                                                            @else
+                                                                <span class="badge bg-warning">Unknown Status</span>
+                                                            @endif</td>
+
                                                         <td>
-                                                            <button class="btn btn-primary">Accept</button>
-                                                            <button class="btn btn-danger">Reject</button>
+                                                            <form class="d-inline" action="{{ route('update.request.status', ['user' => $request->user->id, 'project' => $request->project->id]) }}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="user_id" value="{{ $request->user->id }}">
+                                                                <input type="hidden" name="project_id" value="{{ $request->project->id }}">
+                                                                <button type="submit" class="btn btn-primary" name="status" value="1">Accept</button>
+                                                            </form>
+                                                            <form class="d-inline" action="{{ route('update.request.status', ['user' => $request->user->id, 'project' => $request->project->id]) }}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" name="user_id" value="{{ $request->user->id }}">
+                                                                <input type="hidden" name="project_id" value="{{ $request->project->id }}">
+                                                                <button type="submit" class="btn btn-danger" name="status" value="2">Reject</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

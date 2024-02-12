@@ -55,7 +55,9 @@ class ProjectController extends Controller
 
         $partners = $project->partners;
 
-        $users  = $project->users;
+
+        $users = $project->users()->where('approval_status', 1)->get();
+
         return view('admin.projects.show', compact('project', 'partners', 'users'));
     }
 

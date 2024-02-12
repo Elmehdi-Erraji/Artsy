@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\ProjectUser;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,9 +20,15 @@ class ProfileController extends Controller
      */
     public function index(Request $request): View
     {
-        return view('profile.profile', [
-            'user' => $request->user(),
-        ]);
+        $userId = Auth::id();
+
+        $userId = auth()->id();
+
+        $myRequests = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('request_status', 0)->get();
+
+        $assignedProjects = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('approval_status', 0)->get();
+
+        return view('profile.profile', ['user' => $request->user(),] , compact('myRequests','assignedProjects'));
     }
 
     public function show(string $id)
@@ -54,7 +61,7 @@ class ProfileController extends Controller
 
 
         }
-        return Redirect::route('users.index')->with('success', 'Profile updated successfully.');
+        return Redirect::route('profile.index')->with('success', 'Profile updated successfully.');
     }
 
 

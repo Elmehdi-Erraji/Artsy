@@ -56,7 +56,7 @@
 
 
                             <div class="mb-3 text-center">
-                                <button class="btn rounded-pill btn-primary" type="submit">Sign In</button>
+                                <button class="btn rounded-pill btn-primary" type="submit">Delete account</button>
                             </div>
                         </form>
                     </div>
@@ -158,26 +158,33 @@
                                                         <th>Project Title</th>
                                                         <th>Description</th>
                                                         <th>Budget</th>
-                                                        <th>Partner</th>
-                                                        <th>Request Date</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Velonic Admin</td>
-                                                        <td>a music album</td>
-                                                        <td>$1000</td>
-                                                        <td>sony</td>
-                                                        <td>10-02-2024</td>
-                                                        <td><span class="badge bg-info">Pending</span></td>
-                                                        <td>
-                                                            <button class="btn btn-danger">Delete</button>
-                                                            <button class="btn btn-info">Project Details</button>
-                                                        </td>
-                                                    </tr>
+                                                     @foreach($myRequests as $request)
+                                                        <tr>
+                                                            <td>{{ $request->project->id }}</td>
+                                                            <td>{{ $request->project->title }}</td>
+                                                            <td>{{ $request->project->description }}</td>
+                                                            <td>{{ $request->project->budget }}K MAD</td>
+                                                            <td>
+                                                                @if($request->request_status === 0)
+                                                                    <span class="badge bg-info">Pending</span>
+                                                                @elseif($request->request_status === 1)
+                                                                    <span class="badge bg-success">Approved</span>
+                                                                @elseif($request->request_status === 2)
+                                                                    <span class="badge bg-danger">Rejected</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+
+                                                                <button class="btn btn-danger">Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                     <!-- Add more rows for other requests -->
                                                     </tbody>
                                                 </table>
@@ -198,29 +205,25 @@
                                                         <th>Project Title</th>
                                                         <th>Description</th>
                                                         <th>Budget</th>
-                                                        <th>Partner</th>
-                                                        <th>Request Date</th>
-                                                        <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Velonic Admin</td>
-                                                        <td>a music album</td>
-                                                        <td>$1000</td>
-                                                        <td>sony</td>
-                                                        <td>10-02-2024</td>
-                                                        <td><span class="badge bg-info">Pending</span></td>
-                                                        <td>
-                                                            <button class="btn btn-soft-warning">Accept</button>
-                                                            <button class="btn btn-soft-danger">Deny</button>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Add more rows for other requests -->
+                                                    @foreach($assignedProjects as $project)
+                                                        <tr>
+                                                            <td>{{ $project->project->id }}</td>
+                                                            <td>{{ $project->project->title }}</td>
+                                                            <td>{{ $project->project->description }}</td>
+                                                            <td>{{ $project->project->budget }}K MAD</td>
+                                                            <td>
+                                                                <button class="btn btn-primary">Accept</button>
+                                                                <button class="btn btn-danger">Deny</button>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
+
                                             </div>
                                         </div>
                                     </div>
