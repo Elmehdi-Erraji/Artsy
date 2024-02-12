@@ -29,7 +29,33 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $user = $request->user();
+
+        switch ($user->status) {
+            case 0:
+                Auth::logout();
+                return redirect()->route('login')->with('status', 'Wait for admin approval.');
+                break;
+            case 1:
+                switch ($user->roles()->first()->id) {
+                    case 1: // Role ID for admin
+                        return redirect()->route('users.index');
+                        break;
+                    case 2: // Role ID for user
+                        return redirect()->route('requests.index');
+                        break;
+                    default:
+                        return redirect(RouteServiceProvider::HOME);
+                        break;
+                }
+                break;
+            case 2:
+                Auth::logout();
+                return redirect()->route('login')->with('status', 'You have been banned by the admin. Please contact our support team for more information.');
+                break;
+        }
+
+
     }
 
     /**

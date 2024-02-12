@@ -5,8 +5,7 @@
     <meta charset="utf-8" />
     <title>Log In </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully responsive admin theme which can be used to build CRM, CMS,ERP etc." name="description" />
-    <meta content="Techzaa" name="author" />
+
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -100,6 +99,8 @@
         <div class="row">
             <div class="col-12 text-center">
                 <p class="text-dark-emphasis">Already registered? <a href="{{ route('login') }}" class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Log in</b></a></p>
+                <p class="text-dark-emphasis"> Go back  <a href="{{ redirect('test') }}" class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Home</b></a></p>
+
             </div> <!-- end col -->
         </div>
         <!-- end row -->

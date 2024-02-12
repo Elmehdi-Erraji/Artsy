@@ -64,10 +64,14 @@
                 <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button"
                    aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" width="32" class="rounded-circle">
+                       @if (Auth::user()->getFirstMedia('avatars'))
+                            <img src="{{ Auth::user()->getFirstMedia('avatars')->getUrl() }}" class="rounded-circle" alt="Avatar" width="50">
+                        @else
+                            <i class="ri-account-circle-line fs-18 align-middle me-1"></i>
+                        @endif
                     </span>
                     <span class="d-lg-block d-none">
-                        <h5 class="my-0 fw-normal">Thomson <i
+                        <h5 class="my-0 fw-normal">{{ Auth::user()->name }} <i
                                 class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i></h5>
                     </span>
                 </a>
@@ -91,10 +95,15 @@
                     </a>
 
                     <!-- item-->
-                    <a href="#" class="dropdown-item">
-                        <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
-                        <span>Logout</span>
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="#" class="dropdown-item"
+                           onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                            <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
+                            <span>Logout</span>
+                        </a>
+                    </form>
                 </div>
             </li>
         </ul>

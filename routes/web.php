@@ -51,7 +51,9 @@ require __DIR__.'/auth.php';
 
 
 
-
+Route::get('/home',function(){
+    return view('welcome');
+});
 
 
 
