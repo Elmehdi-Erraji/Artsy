@@ -68,7 +68,7 @@
                             <i class="ri-mail-line widget-icon"></i>
                         </div>
                         <h6 class="text-uppercase mt-0" title="Requests">Requests</h6>
-                        <h2 class="my-2">error</h2>
+                        <h2 class="my-2">{{$incomingRequestsCount}}</h2>
                     </div>
                 </div>
             </div>
