@@ -108,41 +108,34 @@
                                 <div id="edit-profile" class="tab-pane">
                                     <div id="edit-profile" class="tab-pane">
                                         <div class="user-profile-content">
-                                            <form action="{{ route('profile.edit') }}" method="PATCH" id="" enctype="multipart/form-data">
+                                            <form action="{{ route('profile.update',Auth::user()->id) }}" method="POST" id="" enctype="multipart/form-data">
                                                 @csrf
-                                                @method('patch')
+                                                @method('PUT')
                                                 <div class="row row-cols-sm-2 row-cols-1">
                                                     <div class="mb-2">
                                                         <label class="form-label" for="username">Username</label>
-                                                        <input type="text" placeholder="{{ Auth::user()->name }}" id="username" name="name" class="form-control">
+                                                        <input type="text" value="{{ Auth::user()->name }}" id="username" name="name" class="form-control">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label" for="email">Email</label>
-                                                        <input type="email" placeholder="{{ Auth::user()->email }}" id="email" name="email" class="form-control">
+                                                        <input type="email" value="{{ Auth::user()->email }}" id="email" name="email" class="form-control">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label" for="phone">Phone</label>
-                                                        <input type="tel" placeholder="{{ Auth::user()->phone }}" id="phone" name="phone" class="form-control">
+                                                        <input type="tel" value="{{ Auth::user()->phone }}" id="phone" name="phone" class="form-control">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label" for="profession">Profession</label>
-                                                        <input type="text" placeholder="{{ Auth::user()->profession }}" id="profession" name="profession" class="form-control">
+                                                        <input type="text" value="{{ Auth::user()->profession }}" id="profession" name="profession" class="form-control">
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="password">Password</label>
-                                                        <input type="password" placeholder="Enter new password" id="password" name="password" class="form-control">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="repassword">Re-Password</label>
-                                                        <input type="password" placeholder="Re-enter new password" id="repassword" name="repassword" class="form-control">
-                                                    </div>
+
                                                     <div class="col-sm-12 mb-3">
                                                         <label class="form-label" for="aboutMe">About Me</label>
-                                                        <textarea style="height: 125px;" placeholder="{{ Auth::user()->description }}" id="aboutMe" name="description" class="form-control"></textarea>
+                                                        <textarea style="height: 125px;" id="aboutMe" name="description" class="form-control">{{ Auth::user()->description }}</textarea>
                                                     </div>
                                                     <div class="col-sm-12 mb-3">
                                                         <label class="form-label" for="profileImage">Profile Image</label>
-                                                        <input type="file" id="profileImage" name="profileImage" class="form-control">
+                                                        <input type="file" id="profileImage" name="avatar" class="form-control">
                                                     </div>
                                                 </div>
                                                 <button class="btn btn-primary" type="submit"><i class="ri-save-line me-1 fs-16 lh-1"></i> Save</button>

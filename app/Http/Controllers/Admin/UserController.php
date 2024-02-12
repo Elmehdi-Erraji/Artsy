@@ -58,20 +58,20 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request,  User $user)
-    {
-        $request->validate([
-            'status' => Rule::in(array_keys(User::STATUS_RADIO)),
-            'role' => 'required',
-        ]);
+        public function update(Request $request,  User $user)
+        {
+            $request->validate([
+                'status' => Rule::in(array_keys(User::STATUS_RADIO)),
+                'role' => 'required',
+            ]);
 
-        $user->roles()->sync($request->role);
+            $user->roles()->sync($request->role);
 
-        $user->status = $request->status;
+            $user->status = $request->status;
 
-        $user->save();
-        return redirect()->route('users.index')->with('success', 'User Updated successfully');
-    }
+            $user->save();
+            return redirect()->route('users.index')->with('success', 'User Updated successfully');
+        }
 
     public function destroy(User $user)
     {
