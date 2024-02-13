@@ -206,6 +206,7 @@
                                                         <th>Project Title</th>
                                                         <th>Description</th>
                                                         <th>Budget</th>
+                                                        <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     </thead>
@@ -217,6 +218,13 @@
                                                             <td>{{ Str::limit(optional($assigned->project)->title, 50, '...') }}</td>
                                                             <td>{{ Str::limit(optional($assigned->project)->description, 50, '...') }}</td>
                                                             <td>{{ $assigned->project->budget }}K MAD</td>
+                                                            <td>@if($assigned->approval_status === 0)
+                                                                    <span class="badge bg-info">Pending</span>
+                                                                @elseif($assigned->approval_status === 1)
+                                                                    <span class="badge bg-success">Approved</span>
+                                                                @elseif($assigned->approval_status === 2)
+                                                                    <span class="badge bg-danger">Rejected</span>
+                                                                @endif</td>
                                                             <td>
                                                                 <div style="display: flex; gap: 5px;">
                                                                     <a href="{{ route('approval.status', ['project' => $assigned->id]) }}" class="btn btn btn-info">View Details</a>

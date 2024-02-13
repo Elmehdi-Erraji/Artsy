@@ -22,10 +22,9 @@ class ProfileController extends Controller
     {
         $userId = Auth::id();
 
-        $myRequests = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('request_status', '=', 0)->get();
+        $myRequests = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('approval_status', '=', 5)->get();
 
-        $assignedProjects = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('approval_status', 0)->get();
-
+        $assignedProjects = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('request_status', 5)->get();
         return view('profile.profile', ['user' => auth()->user()], compact('myRequests', 'assignedProjects'));
     }
 
