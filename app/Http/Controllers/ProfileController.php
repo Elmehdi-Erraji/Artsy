@@ -18,17 +18,15 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function index(Request $request): View
+    public function index(): View
     {
         $userId = Auth::id();
 
-        $userId = auth()->id();
-
-        $myRequests = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('request_status', '!=', 4)->get();
+        $myRequests = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('request_status', '=', 0)->get();
 
         $assignedProjects = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('approval_status', 0)->get();
 
-        return view('profile.profile', ['user' => $request->user(),] , compact('myRequests','assignedProjects'));
+        return view('profile.profile', ['user' => auth()->user()], compact('myRequests', 'assignedProjects'));
     }
 
     public function show(string $id)
@@ -37,11 +35,10 @@ class ProfileController extends Controller
     }
 
 
-    public function update(Request $request , string $id): RedirectResponse
+    public function update(Request $request, string $id): RedirectResponse
     {
 
         $user = User::findOrFail($id);
-
 
 
         if ($request->hasFile('profileImage')) {
@@ -55,8 +52,8 @@ class ProfileController extends Controller
 
         if ($request->hasFile('avatar')) {
             if ($user->getFirstMediaUrl('avatars')) {
-            $user->clearMediaCollection('avatars');
-        }
+                $user->clearMediaCollection('avatars');
+            }
             $user->addMediaFromRequest('avatar')->usingName($user->name)->toMediaCollection('avatars');
 
 
@@ -68,21 +65,21 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
-//    public function destroy(Request $request): RedirectResponse
-//    {
-//        $request->validateWithBag('userDeletion', [
-//            'password' => ['required', 'current_password'],
-//        ]);
-//
-//        $user = $request->user();
-//
-//        Auth::logout();
-//
-//        $user->delete();
-//
-//        $request->session()->invalidate();
-//        $request->session()->regenerateToken();
-//
-//        return Redirect::to('/');
-//    }
+    public function destroy(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'password' => ['required', 'current_password'],
+        ]);
+
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->to('home');
+    }
 }

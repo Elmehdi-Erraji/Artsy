@@ -20,7 +20,12 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="profile-user-img">
+
+                                    @if($user->getFirstMedia('avatars'))
                                     <img src="{{ $user->getFirstMedia('avatars')->getUrl() }}" alt="" class="avatar-lg rounded-circle">
+                                    @else
+                                            <i class="ri-account-circle-line fs-24 align-middle me-1">No Profile </i>
+                                        @endif
                                 </div>
                                 <div class="">
                                     <h4 class="mt-4 fs-17 ellipsis">{{ $user->name }}</h4>

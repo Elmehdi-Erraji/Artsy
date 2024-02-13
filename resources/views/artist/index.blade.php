@@ -77,8 +77,8 @@
                                                     No image
                                                 @endif
                                             </td>
-                                            <td>{{ $project->title }}</td>
-                                            <td>{{ $project->description }}</td>
+                                            <td>{{ Str::limit(optional($project->project)->title, 50, '...') }}</td>
+                                            <td>{{ Str::limit(optional($project->project)->description, 50, '...') }}</td>
                                             <td>{{ $project->start_date }}</td>
                                             <td>{{ $project->deadline }}</td>
                                             <td>{{ $project->budget }}K MAD</td>

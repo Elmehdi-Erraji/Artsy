@@ -13820,21 +13820,21 @@ html[data-menu-color="dark"] .logo.logo-dark {
     -webkit-transform: translate(-50%, -50%) rotate(90deg);
     transform: translate(-50%, -50%) rotate(90deg);
 }
-.side-nav .side-nav-item.menuitem-active > a:not(.collapsed) > span.menu-arrow {
+.side-nav .side-nav-item.  > a:not(.collapsed) > span.menu-arrow {
     -webkit-transform: translate(-50%, -50%) rotate(90deg);
     transform: translate(-50%, -50%) rotate(90deg);
 }
-.side-nav .menuitem-active > a {
+.side-nav .  > a {
     color: var(--tz-menu-item-active-color);
     font-weight: 500;
     background-color: var(--tz-menu-item-active-bg);
 }
-.side-nav .menuitem-active > a:active,
-.side-nav .menuitem-active > a:focus,
-.side-nav .menuitem-active > a:hover {
+.side-nav .  > a:active,
+.side-nav .  > a:focus,
+.side-nav .  > a:hover {
     color: var(--tz-menu-item-active-color);
 }
-.side-nav .menuitem-active .menuitem-active .active {
+.side-nav .  .  .active {
     color: var(--tz-menu-item-active-color);
     font-weight: 500;
     background-color: transparent;

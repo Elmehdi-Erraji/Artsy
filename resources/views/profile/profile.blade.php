@@ -22,7 +22,6 @@
                                 <i class="ri-account-circle-line fs-18 align-middle me-1"></i>
                             @endif
 
-
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex justify-content-end align-items-center gap-2">
@@ -50,15 +49,13 @@
                     <div class="modal-body">
 
 
-                        <form action="#" class="ps-3 pe-3">
-
-
+                        <form id="delete-account-form" action="{{ route('profile.destroy',Auth::user()->id) }}" method="POST" class="ps-3 pe-3">
+                            @csrf
+                            @method('DELETE')
                             <div class="mb-3">
                                 <label for="password1" class="form-label">Password</label>
-                                <input class="form-control" type="password" required="" id="password1" placeholder="Enter your password">
+                                <input class="form-control" type="password" required id="password1" name="password" placeholder="Enter your password">
                             </div>
-
-
                             <div class="mb-3 text-center">
                                 <button class="btn rounded-pill btn-primary" type="submit">Delete account</button>
                             </div>
@@ -213,15 +210,26 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @foreach($assignedProjects as $project)
+
+                                                    @foreach($assignedProjects as $assigned)
                                                         <tr>
-                                                            <td>{{ $project->project->id }}</td>
-                                                            <td>{{ $project->project->title }}</td>
-                                                            <td>{{ $project->project->description }}</td>
-                                                            <td>{{ $project->project->budget }}K MAD</td>
+                                                            <td>{{ $assigned->project->id }}</td>
+                                                            <td>{{ Str::limit(optional($assigned->project)->title, 50, '...') }}</td>
+                                                            <td>{{ Str::limit(optional($assigned->project)->description, 50, '...') }}</td>
+                                                            <td>{{ $assigned->project->budget }}K MAD</td>
                                                             <td>
-                                                                <button class="btn btn-primary">Accept</button>
-                                                                <button class="btn btn-danger">Deny</button>
+                                                                <div style="display: flex; gap: 5px;">
+                                                                    <a href="{{ route('approval.status', ['project' => $assigned->id]) }}" class="btn btn btn-info">View Details</a>
+
+                                                                    <form id="approvalForm" action="{{ route('approval.status') }}" method="POST">
+                                                                        @csrf
+                                                                        @method('POST')
+                                                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                                        <input type="hidden" name="project_id" value="{{ $assigned->project->id }}">
+                                                                        <button type="submit" name="approval_status" value="1" class="btn btn-success">Accept</button>
+                                                                        <button type="submit" name="approval_status" value="2" class="btn btn-danger">Deny</button>
+                                                                    </form>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     @endforeach

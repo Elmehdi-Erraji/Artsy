@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Partner;
 use App\Models\Project;
+use App\Models\ProjectUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,7 @@ class ProjectController extends Controller
         $partners = $project->partners;
 
 
-        $users = $project->users()->where(function ($query) {$query->where('approval_status', 4)->orWhere('request_status', 1);})->get();
+        $users = $project->users()->where(function ($query) {$query->Where('request_status', 5);})->get();
 
         return view('admin.projects.show', compact('project', 'partners', 'users'));
     }
@@ -90,7 +91,7 @@ class ProjectController extends Controller
     {
 
         $project->delete();
-
+        ProjectUser::where('project_id', $project->id)->delete();
         return redirect()->route('projects.index')->with('success','Project deleted successfully');
     }
 }

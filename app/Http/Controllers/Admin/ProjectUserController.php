@@ -17,8 +17,8 @@ class ProjectUserController extends Controller
      */
     public function index()
     {
-        $incomingRequests = ProjectUser::with('user', 'project')->where('request_status', '=', 0)->get();
-        $assignedProjects = ProjectUser::with('user', 'project')->where('approval_status', '=', 0)->get();
+        $incomingRequests = ProjectUser::with('user', 'project')->where('approval_status','=', 5)->get();
+        $assignedProjects = ProjectUser::with('user', 'project')->where('request_status','=', 5)->get();
 
         return view('admin.requests.index', compact('incomingRequests', 'assignedProjects'));
     }
@@ -46,8 +46,8 @@ class ProjectUserController extends Controller
         $syncData = [];
         foreach ($selected_users as $user_id) {
             $syncData[$user_id] = [
-                'request_status' => 0, //pending .1 accepted . 2 denied
-                'approval_status' => 3 //pending .4 accepted .5 denied
+                'approval_status' => 0,
+                'request_status' => 5
             ];
         }
         $project->users()->sync($syncData);

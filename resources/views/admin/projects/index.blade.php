@@ -39,13 +39,11 @@
                 <div class="card">
                     <div class="card-body p-0">
                         <div class="p-3">
-                            <div class="app-search d-none d-lg-block">
-                                <form id="searchForm" style="width: 40%;">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="Search..." id="searchInput">
-                                        <span class="ri-search-line search-icon text-muted"></span>
-                                    </div>
-                                </form>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="{{ route('projects.create') }}" class="btn btn-info" id="addButton" style="width: 30%">Add A Project</a>
+                                </div>
+
                             </div>
                         </div>
 
@@ -77,8 +75,9 @@
                                                     No image
                                                 @endif
                                             </td>
-                                            <td>{{ $project->title }}</td>
-                                            <td>{{ $project->description }}</td>
+                                            <td>{{ strlen($project->title) > 40 ? substr($project->title, 0, 42) . '...' : $project->title }}</td>
+                                            <td>{{ strlen($project->description) > 40 ? substr($project->description, 0, 42) . '...' : $project->description }}</td>
+
                                             <td>{{ $project->start_date }}</td>
                                             <td>{{ $project->deadline }}</td>
                                             <td>{{ $project->budget }}K MAD</td>

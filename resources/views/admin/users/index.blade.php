@@ -81,13 +81,11 @@
                 <div class="card">
                     <div class="card-body p-0">
                         <div class="p-3">
-                            <div class="app-search d-none d-lg-block">
-                                <form id="searchForm" style="width: 40%;">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="Search..." id="searchInput">
-                                        <span class="ri-search-line search-icon text-muted"></span>
-                                    </div>
-                                </form>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="{{ route('users.create') }}" class="btn btn-primary" id="addButton" style="width: 30%">Add An Artist</a>
+                                </div>
+
                             </div>
                         </div>
 

@@ -33,25 +33,27 @@
                     <span> Dashboard </span>
                 </a>
             </li>
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarUsers" aria-expanded="false" aria-controls="sidebarUsers" class="side-nav-link">
-                    <i class="ri-group-2-line"></i>
-                    <span> Artists </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarUsers">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="{{route('users.create')}}">Add artists</a>
-                        </li>
-                        <li>
-                            <a href="{{route('users.index')}}">Artists List</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
 
-            <li class="side-nav-item">
+                <li class="side-nav-item">
+                    <a data-bs-toggle="collapse" href="#sidebarUsers" aria-expanded="false" aria-controls="sidebarUsers" class="side-nav-link">
+                        <i class="ri-group-2-line"></i>
+                        <span> Artists </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarUsers">
+                        <ul class="side-nav-second-level">
+                            <li>
+                                <a href="{{ route('users.create') }}">Add artists</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('users.index') }}">Artists List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarPartners" aria-expanded="false" aria-controls="sidebarUsers" class="side-nav-link">
                     <i class="ri-building-2-line"></i>
                     <span> Partners </span>
@@ -102,12 +104,19 @@
                     </ul>
                 </div>
             </li>
+                <li class="side-nav-item">
+                    <a href="{{route('home')}}" class="side-nav-link">
+                        <i class="ri-home-3-line"></i>
+                        <span> Back Home </span>
+                    </a>
+                </li>
+
             @endif
 
 
             @if (auth()->user()->roles()->first()->name == 'artist')
             <li class="side-nav-item">
-                <a href="{{route('users.index')}}" class="side-nav-link">
+                <a href="{{route('home')}}" class="side-nav-link">
                     <i class="ri-home-3-line"></i>
                     <span> Back Home </span>
                 </a>

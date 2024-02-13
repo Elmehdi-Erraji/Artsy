@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
                         return redirect()->route('users.index');
                         break;
                     case 2: // Role ID for user
-                        return redirect()->route('requests.index');
+                        return redirect('/');
                         break;
                     default:
                         return redirect(RouteServiceProvider::HOME);
