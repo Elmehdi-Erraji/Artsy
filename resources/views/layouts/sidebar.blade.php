@@ -25,7 +25,7 @@
         <ul class="side-nav">
             <li class="side-nav-title">Main</li>
 
-            @if (auth()->user()->roles()->first() == 'Admin')
+            @if (auth()->user()->roles()->first()->name == 'admin')
 
             <li class="side-nav-item">
                 <a href="{{route('users.index')}}" class="side-nav-link">
@@ -105,7 +105,7 @@
             @endif
 
 
-
+            @if (auth()->user()->roles()->first()->name == 'artist')
             <li class="side-nav-item">
                 <a href="{{route('users.index')}}" class="side-nav-link">
                     <i class="ri-home-3-line"></i>
@@ -127,7 +127,7 @@
                     </ul>
                 </div>
             </li>
-
+            @endif
 
 
 
