@@ -16,8 +16,12 @@
                 <div class="profile-user-box">
                     <div class="row">
                         <div class="col-sm-6">
+                            @if (Auth::user()->getFirstMedia('avatars'))
+                                <div class="profile-user-img"><img src="{{ Auth::user()->getFirstMedia('avatars')->getUrl() }}" alt="" class="avatar-lg rounded-circle"></div>
+                            @else
+                                <i class="ri-account-circle-line fs-18 align-middle me-1"></i>
+                            @endif
 
-                            <div class="profile-user-img"><img src="{{ Auth::user()->getFirstMedia('avatars')->getUrl() }}" alt="" class="avatar-lg rounded-circle"></div>
 
                         </div>
                         <div class="col-sm-6">

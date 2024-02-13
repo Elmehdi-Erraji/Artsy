@@ -25,9 +25,10 @@
         <ul class="side-nav">
             <li class="side-nav-title">Main</li>
 
+            @if (auth()->user()->roles()->first() == 'Admin')
 
             <li class="side-nav-item">
-                <a href="dashboard" class="side-nav-link">
+                <a href="{{route('users.index')}}" class="side-nav-link">
                     <i class="ri-dashboard-3-line"></i>
                     <span> Dashboard </span>
                 </a>
@@ -67,6 +68,8 @@
                     </ul>
                 </div>
             </li>
+
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarFAQ" aria-expanded="false" aria-controls="sidebarFAQ" class="side-nav-link">
                     <i class="ri-folder-line"></i>
@@ -99,11 +102,31 @@
                     </ul>
                 </div>
             </li>
+            @endif
 
 
 
+            <li class="side-nav-item">
+                <a href="{{route('users.index')}}" class="side-nav-link">
+                    <i class="ri-home-3-line"></i>
+                    <span> Back Home </span>
+                </a>
+            </li>
 
-
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarFAQ" aria-expanded="false" aria-controls="sidebarFAQ" class="side-nav-link">
+                    <i class="ri-folder-line"></i>
+                    <span> Projects </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarFAQ">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('artist.index')}}">My projects</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Artist\projectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,6 @@ Route::get('/admin',function(){
     return view('admin.index');
 })->middleware(['auth','role:admin'])->name('admin.index');
 
-
 Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
 Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
@@ -49,6 +49,7 @@ require __DIR__.'/auth.php';
 
 
 
+Route::resource('artist', \App\Http\Controllers\Artist\ProjectController::class);
 
 
 
@@ -56,6 +57,9 @@ require __DIR__.'/auth.php';
 Route::get('/home',function(){
     return view('welcome');
 });
+
+
+
 
 
 

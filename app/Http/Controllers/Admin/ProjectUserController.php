@@ -46,8 +46,8 @@ class ProjectUserController extends Controller
         $syncData = [];
         foreach ($selected_users as $user_id) {
             $syncData[$user_id] = [
-                'request_status' => 4, //pending .1 accepted . 2denied
-                'approval_status' => 4 //pending .1 accepted .2denied
+                'request_status' => 0, //pending .1 accepted . 2 denied
+                'approval_status' => 3 //pending .4 accepted .5 denied
             ];
         }
         $project->users()->sync($syncData);

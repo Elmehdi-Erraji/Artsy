@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
         $userId = auth()->id();
 
-        $myRequests = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('request_status', 0)->get();
+        $myRequests = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('request_status', '!=', 4)->get();
 
         $assignedProjects = ProjectUser::with('user', 'project')->where('user_id', $userId)->where('approval_status', 0)->get();
 

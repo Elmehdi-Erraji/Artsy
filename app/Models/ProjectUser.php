@@ -20,14 +20,16 @@ class ProjectUser extends Model
 
     protected $attributes =[
         'request_status' => 0,
-        'approval_status' => 0,
+        'approval_status' => 3,
     ];
 
     const STATUS_RADIO = [
         '0' => 'pinned',
         '1' => 'accepted',
         '2' => 'rejected',
-        '3' => 'null',
+        '3' => 'pinned',
+        '4' => 'accepted',
+        '5' => 'rejected',
     ];
 
     public function user()
