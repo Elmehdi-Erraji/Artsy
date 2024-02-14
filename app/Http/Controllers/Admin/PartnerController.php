@@ -8,7 +8,7 @@ use App\Http\Requests\PartnerUpdate;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 
-class PartnerController extends Controller
+class PartnerController  
 {
     /**
      * Display a listing of the resource.

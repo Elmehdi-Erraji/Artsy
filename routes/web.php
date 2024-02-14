@@ -21,7 +21,6 @@ Route::middleware('auth')->group(function () {
 // Artist routes
 Route::group(['middleware' => 'artist'], function () {
     Route::resource('artist', \App\Http\Controllers\Artist\projectController::class);
-
     Route::get('partnerDetails/{id}', [\App\Http\Controllers\Artist\PartnerCOntroller::class, 'show'])->name('partnerDetails.show');
     Route::get('approval-status/{user}/{project}', [\App\Http\Controllers\Artist\ProjectController::class, 'show'])->name('projectDetails.show');
     Route::post('approval-status', [\App\Http\Controllers\Artist\ProjectController::class, 'approvalStatus'])->name('approval.status');

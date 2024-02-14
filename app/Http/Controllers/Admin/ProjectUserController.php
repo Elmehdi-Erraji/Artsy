@@ -10,7 +10,7 @@ use App\Models\ProjectUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProjectUserController extends Controller
+class ProjectUserController  
 {
     /**
      * Display a listing of the resource.

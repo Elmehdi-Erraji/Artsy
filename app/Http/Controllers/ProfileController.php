@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 
-class ProfileController extends Controller
+class ProfileController  
 {
     /**
      * Display the user's profile form.

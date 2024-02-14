@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class projectController extends Controller
+class projectController  
 {
     public function index(){
 

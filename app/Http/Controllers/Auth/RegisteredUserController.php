@@ -14,7 +14,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
-class RegisteredUserController extends Controller
+class RegisteredUserController
 {
     /**
      * Display the registration view.
