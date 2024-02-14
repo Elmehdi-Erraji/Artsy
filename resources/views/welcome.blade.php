@@ -47,13 +47,13 @@
         <!-- Nav Menu -->
         <nav id="navmenu" class="navmenu">
             <ul>
-                <li><a href="{{ url('/#hero') }}">Home</a></li>
-                <li><a href="{{ url('/#about') }}">About</a></li>
-                <li><a href="{{ url('/#services') }}">Services</a></li>
-                <li><a href="{{ url('/#portfolio') }}">Portfolio</a></li>
-                <li><a href="{{ url('/#team') }}">Team</a></li>
-                <li><a href="{{ url('/blog') }}" class="{{ Request::is('blog') ? 'active' : '' }}">Blog</a></li>
-                <li><a href="{{ url('/#contact') }}">Contact</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#" class="{{ Request::is('blog') ? 'active' : '' }}">Blog</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav><!-- End Nav Menu -->

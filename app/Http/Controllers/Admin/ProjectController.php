@@ -18,11 +18,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects  = Project::all();
-        $users = User::where('status', 1)
-            ->whereHas('roles', function ($query) {
-                $query->where('name', 'artist');
-            })
-            ->get();
+        $users = User::where('status', 1)->whereHas('roles', function ($query) {$query->where('name', 'artist');})->get();
         return view('admin.projects.index',compact('projects','users'));
     }
 

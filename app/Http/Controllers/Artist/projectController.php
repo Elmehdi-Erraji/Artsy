@@ -70,6 +70,17 @@ class projectController extends Controller
         $user = User::findOrFail($request->user_id);
         $project = Project::findOrFail($request->project_id);
 
+        $existingRequest = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->where('request_status', 0)->exists();
+
+        if ($existingRequest) {
+            return redirect()->back()->with('success00', 'You have already applied for this project.');
+        }
+
+        $projectAssigned = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->where('approval_status', 0)->exists();
+
+        if ($projectAssigned) {
+            return redirect()->back()->with('success', 'This project has already been assigned to you. Please check your profile.');
+        }
         // Update the request status
         $userProject = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->firstOrFail();
         $userProject->request_status = $request->request_status;
@@ -78,6 +89,51 @@ class projectController extends Controller
 
         return redirect()->back()->with('success', 'Your Request Is Sent Successfully.');
     }
+
+//    public function requestStatus(Request $request)
+//    {
+//        $request->validate([
+//            'user_id' => ['required', 'integer'],
+//            'project_id' => ['required', 'integer'],
+//            'request_status' => ['required', 'integer', Rule::in([0, 1, 2])],
+//        ]);
+//
+//        // Retrieve user and project
+//        $user = User::findOrFail($request->user_id);
+//        $project = Project::findOrFail($request->project_id);
+//
+//        // Check if there's an existing request for this project with request_status = 0
+//        $existingRequest = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->where('request_status', 0)->exists();
+//
+//        if ($existingRequest) {
+//            return redirect()->back()->with('error', 'You have already applied for this project.');
+//        }
+//
+//        // Check if the project is already assigned to the user
+//        $projectAssigned = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->where('approval_status', 0)->exists();
+//
+//        if ($projectAssigned) {
+//            return redirect()->back()->with('error', 'This project has already been assigned to you. Please check your profile.');
+//        }
+//
+//        // Update the request status
+//        $userProject = ProjectUser::where('user_id', $user->id)->where('project_id', $project->id)->firstOrFail();
+//
+//        $userProject->request_status = $request->request_status;
+//        $userProject->approval_status = 5;
+//        $userProject->save();
+//
+//        return redirect()->back()->with('success', 'Your request has been sent successfully.');
+//    }
+
+    public function destroy(ProjectUser  $request)
+    {
+        $projectUser = ProjectUser::findOrFail($request->user_id);
+        $projectUser->delete();
+        return redirect()->route('projectusers.index')->with('success','deleted with success');
+
+    }
+
 
 
 }
