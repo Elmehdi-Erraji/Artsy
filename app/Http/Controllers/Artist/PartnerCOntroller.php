@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 
-class PartnerCOntroller  
+class PartnerCOntroller extends Controller
 {
     public function show(string $id)
     {

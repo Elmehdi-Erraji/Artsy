@@ -169,7 +169,7 @@
                                 <a href="{{ route('login') }}" class="btn btn-info">See More Details</a>
                             @else
                                 <div class="mt-2">
-                                    <form id="approvalForm" action="{{ route('request.status') }}" method="POST" style="display: inline-block;">
+                                    <form id="approvalForm" action="{{ route('myRequest') }}" method="POST" style="display: inline-block;">
                                         @csrf
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                         <input type="hidden" name="project_id" value="{{ $project->id }}">

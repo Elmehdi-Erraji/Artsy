@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 
-class ProfileController  
+class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
@@ -52,7 +52,7 @@ class ProfileController
         if ($request->hasFile('avatar')) {
             if ($user->getFirstMediaUrl('avatars')) {
                 $user->clearMediaCollection('avatars');
-            }
+            } 
             $user->addMediaFromRequest('avatar')->usingName($user->name)->toMediaCollection('avatars');
 
 

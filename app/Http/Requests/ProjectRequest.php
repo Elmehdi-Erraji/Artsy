@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class ProjectRequest extends FormRequest
@@ -14,7 +15,7 @@ class ProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Gate::allows('partner_delete');
     }
 
     /**

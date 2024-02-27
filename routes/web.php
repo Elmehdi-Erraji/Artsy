@@ -24,11 +24,11 @@ Route::group(['middleware' => 'artist'], function () {
     Route::get('partnerDetails/{id}', [\App\Http\Controllers\Artist\PartnerCOntroller::class, 'show'])->name('partnerDetails.show');
     Route::get('approval-status/{user}/{project}', [\App\Http\Controllers\Artist\ProjectController::class, 'show'])->name('projectDetails.show');
     Route::post('approval-status', [\App\Http\Controllers\Artist\ProjectController::class, 'approvalStatus'])->name('approval.status');
-    Route::post('request-status', [\App\Http\Controllers\Artist\ProjectController::class, 'requestStatus'])->name('request.status');
 
 });
 
 
+Route::post('myRequest', [\App\Http\Controllers\Artist\ProjectController::class, 'requestStatus'])->name('myRequest');
 
 // Admin Routes
 Route::group(['middleware' => 'admin'], function () {

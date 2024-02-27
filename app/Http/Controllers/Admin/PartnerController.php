@@ -6,15 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PartnerRequest;
 use App\Http\Requests\PartnerUpdate;
 use App\Models\Partner;
+use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
-class PartnerController  
+class PartnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        abort_if(Gate::denies('partner_delete'), \Symfony\Component\HttpFoundation\Response::HTTP_FORBIDDEN, '403 Forbidden');
         $partners = Partner::all();
         return view('admin.partners.index',compact('partners'));
     }

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 
-class UserController  
+class UserController extends Controller
 {
 
     public function index()
@@ -21,7 +21,7 @@ class UserController
         $usersCount = User::count();
         $partnersCount =Partner::count();
         $projectsCount =Project::count();
-  $incomingRequestsCount = ProjectUser::where('request_status', '!=', 3)->count();
+        $incomingRequestsCount = ProjectUser::where('request_status', '!=', 3)->count();
 
         return view('admin.users.index',compact('users','usersCount','partnersCount','projectsCount','incomingRequestsCount'));
     }
